@@ -18,10 +18,14 @@ connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
 
-const actionsRouter = require('./routes/actions');
+//Import Routes
+//const actionsRouter = require('./routes/actions');
 const usersRouter = require('./routes/users');
+const authRoute = require('./routes/auth');
 
-app.use('/actions', actionsRouter);
+//Routes Middleware
+app.use('/api/user',authRoute);
+//app.use('/actions', actionsRouter);
 app.use('/users', usersRouter);
 
 app.get('/',(req, res)=>{
