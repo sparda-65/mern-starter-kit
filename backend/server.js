@@ -27,11 +27,7 @@ const authRoute = require('./routes/auth');
 app.use('/api/user',authRoute);
 app.use('/users', usersRouter);
 
-app.get('/',(req, res)=>{
-
-    res.send('hello !!')
-})
-
+// listen to the port
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
