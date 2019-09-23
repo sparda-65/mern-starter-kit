@@ -10,6 +10,7 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Connexion to MongoDB via mongoose
 const uri = process.env.MONGODB_URL;
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
 );
@@ -19,13 +20,11 @@ connection.once('open', () => {
 })
 
 //Import Routes
-//const actionsRouter = require('./routes/actions');
 const usersRouter = require('./routes/users');
 const authRoute = require('./routes/auth');
 
 //Routes Middleware
 app.use('/api/user',authRoute);
-//app.use('/actions', actionsRouter);
 app.use('/users', usersRouter);
 
 app.get('/',(req, res)=>{
