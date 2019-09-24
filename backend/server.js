@@ -12,8 +12,7 @@ app.use(express.json());
 
 // Connexion to MongoDB via mongoose
 const uri = process.env.MONGODB_URL;
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true }
-);
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
 const connection = mongoose.connection;
 connection.once('open', () => {
   console.log("MongoDB database connection established successfully");

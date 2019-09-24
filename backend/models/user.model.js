@@ -22,7 +22,8 @@ const userSchema = new Schema({
     required: true,
     minlength: 8
   },
-}, {
+}, 
+{
   timestamps: true,
 });
 
