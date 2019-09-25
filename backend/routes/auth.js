@@ -13,42 +13,32 @@ const userSchema= Joi.object().keys({
     .required()
     .email(),
     password: Joi.string()
-    .min(6)
+    .min(8)
     .required()
 });
 
 router.post('/register', async (req,res)=> {
 
     //User validation befor Save
+    const {error} = userSchema.validate(req.body);
+    if(error){
+        return res.status(400).send(error.details[0].message);
+    }
 
-        const {value , error} = userSchema.validate(req.body);
-        if(error){
-            return res.status(400).send(error.details[0].message);
-        }else res.send(value);
-        
-   
-     
-    // userSchema.validate(req.body, (err, result)=> {
-    //     if(err){
-    //         console.log(err)
-    //         res.send('an error !!!')
-    //     }
-    //     console.log(result);
-    //     res.send(result);
-    // });
-
-    // const user = new User({
-    //     username: req.body.username,
-    //     email: req.body.email,
-    //     password: req.body.password
-    // });
-    // try {
-    //     const savedUser = await user.save();
-    //     res.send(savedUser); 
-    //     console.log(savedUser);
-    // } catch (error) {
-    //     res.status(400).send(error);
-    // }
+    const user = new User({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password
+    });
+    
+    // save user on DB
+    try {
+        const savedUser = await user.save();
+        res.send(savedUser); 
+        console.log(savedUser);
+    } catch (error) {
+        res.status(400).send(error);
+    }
 });
 
 router.post('/login', (req,res)=>{
