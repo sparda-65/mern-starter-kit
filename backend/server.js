@@ -21,9 +21,11 @@ connection.once('open', () => {
 //Import Routes
 const usersRouter = require('./routes/users');
 const authRoute = require('./routes/auth');
+const homeRoute = require('./routes/home');
 
 //Routes Middleware
 app.use('/api/user',authRoute);
+app.use('/home',homeRoute);
 app.use('/users', usersRouter);
 
 // listen to the port

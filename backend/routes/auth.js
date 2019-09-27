@@ -60,9 +60,4 @@ router.post('/login', async (req,res)=>{
     res.header('auth-token', token).send(token);
 });
 
-router.post('/', (req,res)=>{
-    res.send('Home');
-
-});
-
 module.exports= router;
